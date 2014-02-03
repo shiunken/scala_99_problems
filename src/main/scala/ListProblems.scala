@@ -206,6 +206,18 @@ trait ListProblems {
     scala> split(3, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   res0: (List[Symbol], List[Symbol]) = (List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   */
+  def split[T](partOneSize: Int, ls: List[T]): (List[T], List[T]) = {
+
+    def recursiveSplit(size: Int, listParts: (List[T], List[T]) ): (List[T], List[T]) = {
+      listParts._2 match {
+        case h :: tail if size == partOneSize => (h :: listParts._1, tail)
+        case h :: tail => recursiveSplit(size+1, (h :: listParts._1, tail))
+        case _ => listParts
+      }
+    }
+
+    recursiveSplit(1, (List(), ls))
+  }
 
   /*
   P18 (**) Extract a slice from a list.
@@ -215,6 +227,11 @@ trait ListProblems {
   scala> slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   res0: List[Symbol] = List('d, 'e, 'f, 'g)
   */
+//  def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
+//
+//
+//  }
+
 
   /*
     P19 (**) Rotate a list N places to the left.
