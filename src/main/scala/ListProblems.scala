@@ -228,6 +228,9 @@ trait ListProblems {
   res0: List[Symbol] = List('d, 'e, 'f, 'g)
   */
   def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
+
+    if (start == 0 && end == 0) ls
+
     val subList = ls match {
       case h :: tail if start == 0 => slice(start-1, end, tail)
       case _ => Nil
@@ -246,6 +249,8 @@ trait ListProblems {
     scala> rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
     res1: List[Symbol] = List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i)
   */
+
+
 
   /*
     P20 (*) Remove the Kth element from a list.
