@@ -210,8 +210,8 @@ trait ListProblems {
 
     def recursiveSplit(size: Int, listParts: (List[T], List[T]) ): (List[T], List[T]) = {
       listParts._2 match {
-        case h :: tail if size == partOneSize => (h :: listParts._1, tail)
-        case h :: tail => recursiveSplit(size+1, (h :: listParts._1, tail))
+        case h :: tail if size == partOneSize => (listParts._1 :+ h, tail)
+        case h :: tail => recursiveSplit(size+1, (listParts._1 :+ h, tail))
         case _ => listParts
       }
     }
@@ -229,14 +229,17 @@ trait ListProblems {
   */
   def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
 
-    if (start == 0 && end == 0) ls
+    println(start, end, ls)
+    if (start == 0 && end == 0) return ls
 
     val subList = ls match {
-      case h :: tail if start == 0 => slice(start-1, end, tail)
-      case _ => Nil
+      case h :: tail if start > 0 => slice(start-1, end, tail)
+      case _ => ls
     }
 
-    slice(end, 0, subList)
+    if (start == 0 && end == 0) return subList
+
+    slice(end, 0, subList.reverse).reverse
   }
 
 
@@ -251,7 +254,6 @@ trait ListProblems {
   */
 
 
-
   /*
     P20 (*) Remove the Kth element from a list.
     Return the list and the removed element in a Tuple. Elements are numbered from 0.
@@ -259,6 +261,43 @@ trait ListProblems {
 
     scala> removeAt(1, List('a, 'b, 'c, 'd))
     res0: (List[Symbol], Symbol) = (List('a, 'c, 'd),'b)
+  */
+
+  /*
+  P21 (*) Insert an element at a given position into a list.
+    Example:
+    scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
+  res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
+  */
+
+  /*
+  P22 (*) Create a list containing all integers within a given range.
+    Example:
+    scala> range(4, 9)
+  res0: List[Int] = List(4, 5, 6, 7, 8, 9)
+  */
+  /*
+  P23 (**) Extract a given number of randomly selected elements from a list.
+  Example:
+    scala> randomSelect(3, List('a, 'b, 'c, 'd, 'f, 'g, 'h))
+  res0: List[Symbol] = List('e, 'd, 'a)
+  Hint: Use the solution to problem P20
+    */
+
+  /*
+    P24 (*) Lotto: Draw N different random numbers from the set 1..M.
+    Example:
+    scala> lotto(6, 49)
+  res0: List[Int] = List(23, 1, 17, 33, 21, 37)
+  */
+
+  /*
+  P25 (*) Generate a random permutation of the elements of a list.
+    Hint: Use the solution of problem P23.
+  Example:
+
+    scala> randomPermute(List('a, 'b, 'c, 'd, 'e, 'f))
+  res0: List[Symbol] = List('b, 'a, 'd, 'c, 'e, 'f)
   */
 
 
