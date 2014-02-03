@@ -227,10 +227,14 @@ trait ListProblems {
   scala> slice(3, 7, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
   res0: List[Symbol] = List('d, 'e, 'f, 'g)
   */
-//  def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
-//
-//
-//  }
+  def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
+    val subList = ls match {
+      case h :: tail if start == 0 => slice(start-1, end, tail)
+      case _ => Nil
+    }
+
+    slice(end, 0, subList)
+  }
 
 
   /*
