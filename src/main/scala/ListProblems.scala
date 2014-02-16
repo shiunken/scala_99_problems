@@ -229,7 +229,6 @@ trait ListProblems {
   */
   def slice[T](start: Int, end: Int, ls: List[T]): List[T] = {
 
-    println(start, end, ls)
     if (start == 0 && end == 0) return ls
 
     val subList = ls match {
@@ -263,12 +262,20 @@ trait ListProblems {
     res0: (List[Symbol], Symbol) = (List('a, 'c, 'd),'b)
   */
 
+
   /*
   P21 (*) Insert an element at a given position into a list.
     Example:
     scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
   res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
   */
+  def insertAt[T](element: T, position: Int, ls: List[T]): List[T] = {
+
+    split(position, ls) match {
+      case (front: List[T], back: List[T]) => front ::: element :: back
+    }
+  }
+
 
   /*
   P22 (*) Create a list containing all integers within a given range.

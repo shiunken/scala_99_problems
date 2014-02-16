@@ -35,17 +35,12 @@ class ListProblemsSpec extends WordSpec with Matchers with ListProblems {
     "give us the same list in reverse order" in {
       val l = List(1,2,3,4,5)
 
-      println(reverseList(l))
-
     }
   }
 
   " calling duplicate on a list " should {
     "give us a duplicated list" in {
       val l = List(1,2,3,4)
-
-
-      println(duplicate(l))
     }
   }
 
@@ -66,4 +61,25 @@ class ListProblemsSpec extends WordSpec with Matchers with ListProblems {
       assertResult(List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k)){ drop(3, input) }
     }
   }
+
+  "calling split on a list " should {
+    "split a list into two lists" in {
+      val input = List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)
+
+      assertResult((List('a, 'b, 'c),List('d, 'e, 'f, 'g, 'h, 'i, 'j, 'k))) {
+        split(3, input)
+      }
+
+    }
+  }
+
+  "calling insertAt on a list " should {
+    "insert an element into the list at the specified position" in {
+
+      assertResult( List('a, 'new, 'b, 'c, 'd) ) {
+        insertAt('new, 1, List('a, 'b, 'c, 'd))
+      }
+    }
+  }
+
 }
