@@ -1,4 +1,5 @@
 import org.scalatest._
+import scala.util.Random
 
 /**
  * User: ken
@@ -90,6 +91,19 @@ class ListProblemsSpec extends WordSpec with Matchers with ListProblems {
       }
     }
 
+  }
+
+  "calling randomSelect on a list " should {
+    "give you a list of a specified size, containing randomly selected elements from the list" in {
+
+      val input = List('a, 'b, 'c, 'd, 'f, 'g, 'h)
+      val randomSize = Random.nextInt( input.size )
+
+      val result = randomSelect(randomSize, input)
+
+      //how do we even test this properly?
+      assert(result.size == randomSize, "Failed when random size is: " + randomSize)
+    }
   }
 
 }

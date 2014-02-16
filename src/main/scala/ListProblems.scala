@@ -1,5 +1,6 @@
 import java.util.NoSuchElementException
 import scala.NoSuchElementException
+import scala.util.Random
 
 /**
  * User: ken
@@ -261,6 +262,12 @@ trait ListProblems {
     scala> removeAt(1, List('a, 'b, 'c, 'd))
     res0: (List[Symbol], Symbol) = (List('a, 'c, 'd),'b)
   */
+  /** Solution taken from the website **/
+  def removeAt[A](n: Int, ls: List[A]): (List[A], A) = ls.splitAt(n) match {
+    case (Nil, _) if n < 0 => throw new NoSuchElementException
+    case (pre, e :: post)  => (pre ::: post, e)
+    case (pre, Nil)        => throw new NoSuchElementException
+  }
 
 
   /**
@@ -299,6 +306,15 @@ trait ListProblems {
   res0: List[Symbol] = List('e, 'd, 'a)
   Hint: Use the solution to problem P20
     */
+
+  def randomSelect[T](numElements: Int, ls: List[T]): List[T] = {
+
+    if ( numElements == 0 ) return Nil
+
+    removeAt(Random.nextInt(ls.size), ls) match {
+      case (list, element) => element :: randomSelect(numElements - 1, list)
+    }
+  }
 
   /*
     P24 (*) Lotto: Draw N different random numbers from the set 1..M.
