@@ -263,12 +263,12 @@ trait ListProblems {
   */
 
 
-  /*
+  /**
   P21 (*) Insert an element at a given position into a list.
     Example:
     scala> insertAt('new, 1, List('a, 'b, 'c, 'd))
   res0: List[Symbol] = List('a, 'new, 'b, 'c, 'd)
-  */
+  **/
   def insertAt[T](element: T, position: Int, ls: List[T]): List[T] = {
 
     split(position, ls) match {
@@ -277,12 +277,21 @@ trait ListProblems {
   }
 
 
-  /*
+  /**
   P22 (*) Create a list containing all integers within a given range.
     Example:
     scala> range(4, 9)
   res0: List[Int] = List(4, 5, 6, 7, 8, 9)
-  */
+  **/
+  def range(start: Int, end: Int): List[Int] = {
+
+    if ( start > end ) return List()
+
+    start :: range(start + 1, end)
+
+  }
+
+
   /*
   P23 (**) Extract a given number of randomly selected elements from a list.
   Example:

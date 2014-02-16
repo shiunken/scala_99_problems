@@ -82,4 +82,14 @@ class ListProblemsSpec extends WordSpec with Matchers with ListProblems {
     }
   }
 
+  "calling range  " should {
+    "give you a list that contains all the integers between the start and end specified" in {
+
+      assertResult( List(4, 5, 6, 7, 8, 9)) {
+        range(4, 9)
+      }
+    }
+
+  }
+
 }
