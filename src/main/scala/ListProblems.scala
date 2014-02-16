@@ -322,6 +322,9 @@ trait ListProblems {
     scala> lotto(6, 49)
   res0: List[Int] = List(23, 1, 17, 33, 21, 37)
   */
+  def lotto(numElements: Int, maxNum: Int): List[Int] = {
+    randomSelect( numElements, range(1, maxNum) )
+  }
 
   /*
   P25 (*) Generate a random permutation of the elements of a list.
@@ -331,6 +334,11 @@ trait ListProblems {
     scala> randomPermute(List('a, 'b, 'c, 'd, 'e, 'f))
   res0: List[Symbol] = List('b, 'a, 'd, 'c, 'e, 'f)
   */
+  def randomPermute[T](ls: List[T]): List[T] = {
+
+    randomSelect(ls.size, ls)
+
+  }
 
 
 }
